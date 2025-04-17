@@ -1,3 +1,5 @@
+"use client"; // Add this line to mark the file as a client component
+
 import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import PhotoCaptureTemplate from "@/components/templates/PhotoCaptureTemplate";

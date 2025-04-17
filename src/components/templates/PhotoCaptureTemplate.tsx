@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/atoms/Button";
 
@@ -48,10 +47,12 @@ export default function PhotoCaptureTemplate({ frame }: Props) {
 
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    const img = new Image();
-    img.src = `/frames/${frame}`;
-    img.onload = () => {
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // Create a regular Image object for the frame
+    const frameImage = new Image();
+    frameImage.src = `/frames/${frame}`; // Load the frame image
+    frameImage.onload = () => {
+      // Once loaded, draw the frame image over the captured video
+      ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
       const dataUrl = canvas.toDataURL("image/png");
       setPhotos((prev) => [...prev, dataUrl]);
     };
