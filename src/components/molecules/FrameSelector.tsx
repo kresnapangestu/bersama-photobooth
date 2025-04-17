@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 // components/atoms/FrameSelector.tsx
 interface FrameSelectorProps {
   frames: string[];
@@ -15,9 +13,8 @@ export const FrameSelector = ({ frames, onSelect }: FrameSelectorProps) => {
           className="cursor-pointer"
           onClick={() => onSelect(frame)}
         >
-          <Image
+          <img
             src={`/frames/${frame}`}
-            fill={true}
             alt={`Frame${index + 1}`}
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
