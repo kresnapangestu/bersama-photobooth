@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Funnel Display";
+  src: url("/public/fonts/FunnelDisplay-Light.ttf") format("ttf");
+  font-weight: 300; /* Atur ketebalan font yang sesuai */
+  font-style: normal;
+  font-display: swap; /* Opsional: untuk mengontrol bagaimana font dirender saat belum diunduh */
+}
+
+@font-face {
+  font-family: "Funnel Display";
+  src: url("/public/fonts/FunnelDisplay-Regular.ttf") format("ttf");
+  font-weight: 400; /* Atur ketebalan font yang sesuai */
+  font-style: normal;
+  font-display: swap; /* Opsional: untuk mengontrol bagaimana font dirender saat belum diunduh */
+}
+
+@font-face {
+  font-family: "Funnel Display";
+  src: url("/public/fonts/FunnelDisplay-Medium.ttf") format("ttf");
+  font-weight: 500; /* Atur ketebalan font yang sesuai */
+  font-style: normal;
+  font-display: swap; /* Opsional: untuk mengontrol bagaimana font dirender saat belum diunduh */
+}
+
+@font-face {
+  font-family: "Funnel Display";
+  src: url("/public/fonts/FunnelDisplay-SemiBold.ttf") format("ttf");
+  font-weight: 600; /* Atur ketebalan font yang sesuai */
+  font-style: normal;
+  font-display: swap; /* Opsional: untuk mengontrol bagaimana font dirender saat belum diunduh */
+}
+
+/* Tambahkan varian font lain jika ada (misalnya, bold, italic) */
+@font-face {
+  font-family: "Funnel Display";
+  src: url("/public/fonts/FunnelDisplay-Bold.ttf") format("ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Funnel Display";
+  src: url("/public/fonts/FunnelDisplay-ExtraBold.ttf") format("ttf");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf9fe;
+  --foreground: #4c4672;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: "Funnel Display", sans-serif;
   --font-mono: var(--font-geist-mono);
 }
+@theme {
+  --color-primary: #dcceff;
+  --color-primaryHover: #b8b1f7;
+  --color-primaryActive: #000000;
+  --color-primaryDisabled: #e6e4ff;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-secondary: #a4b1f1;
+  --color-secondaryHover: #8d95e6;
+  --color-secondaryActive: #7f8de0;
+  --color-secondaryDisabled: #d2d6f9;
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: "Funnel Display", sans-serif;
+}
+
+.animate-scroll-x {
+  animation: scroll-x 20s linear infinite;
 }
