@@ -1,4 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+📸 Ber-sama Photobooth
+
+Ber-sama Photobooth is a modern web app that lets users easily capture and personalize their photo moments with stylish digital frames. Whether it’s for events, gatherings, or just for fun, this app provides a seamless experience to select frames, snap photos, and instantly share or download them.
+
+Built with [Next.js](https://nextjs.org) with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)., it's designed to be simple, elegant, and interactive.
+
+🚀 Features
+🎞️ Select from a collection of beautiful digital photo frames
+
+📷 Capture photos directly from the browser
+
+💾 Instant download and share functionality
+
+🧑‍🎨 Designed for events, parties, or personal fun
+
+💡 Mobile-friendly and responsive UI
+
+🛠️ Tech Stack
+Next.js
+
+Tailwind CSS
+
+TypeScript (if applicable)
+
+Vercel for deployment
 
 ## Getting Started
 
