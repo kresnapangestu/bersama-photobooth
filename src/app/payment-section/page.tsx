@@ -1,12 +1,12 @@
 // import FrameSelectionTemplate from "@/components/templates/FrameSelectionTemplate";
 
 import MainLayout from "@/components/layouts/MainLayout";
-import FrameSelectionTemplate from "@/components/templates/FrameSelectionTemplate";
+import PaymentTemplate from "@/components/templates/PaymentTemplate";
 
-export default function FrameSelectionPage() {
+export default function PaymentSectionpage() {
   return (
     <MainLayout>
-      <FrameSelectionTemplate />
+      <PaymentTemplate />
     </MainLayout>
   );
 }

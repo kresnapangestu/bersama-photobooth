@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const Navbar = () => {
   return (
-    <div className="overflow-hidden w-full max-w-screen rounded-lg flex justify-between absolute z-30 px-[70px] py-[30px] items-center">
+    <div className="fixed top-0 left-0 overflow-hidden w-full max-w-screen rounded-lg flex justify-between  z-30 px-[70px] py-[30px] items-center">
       <Image
         src={"/images/logo-bersama.png"}
         width={150}

@@ -1,5 +1,8 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/atoms/Button";
+import { Headline } from "../molecules/Headline";
 
 interface Props {
   frame: string;
@@ -10,14 +13,33 @@ export default function PhotoCaptureTemplate({ frame }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [photos, setPhotos] = useState<string[]>([]);
   const [countdown, setCountdown] = useState<number | null>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
 
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
+    if (!frame) return;
+
+    const getMediaStream = async () => {
+      try {
+        const userStream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
+        setStream(userStream);
+        if (videoRef.current) {
+          videoRef.current.srcObject = userStream;
+        }
+      } catch (err) {
+        console.error("Error accessing media devices:", err);
       }
-    });
-  }, []);
+    };
+
+    getMediaStream();
+
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, [frame]);
 
   useEffect(() => {
     if (countdown === 0) {
@@ -47,11 +69,9 @@ export default function PhotoCaptureTemplate({ frame }: Props) {
 
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    // Create a regular Image object for the frame
     const frameImage = new Image();
-    frameImage.src = `/frames/${frame}`; // Load the frame image
+    frameImage.src = `/frames/${frame}`;
     frameImage.onload = () => {
-      // Once loaded, draw the frame image over the captured video
       ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
       const dataUrl = canvas.toDataURL("image/png");
       setPhotos((prev) => [...prev, dataUrl]);
@@ -59,12 +79,16 @@ export default function PhotoCaptureTemplate({ frame }: Props) {
   };
 
   return (
-    <div className="p-4 flex flex-col items-center gap-4">
+    <div className="p-4 flex flex-col items-center gap-6">
+      <Headline
+        caption="In three counts, the magic captures you..."
+        subcaption="A spellbinding moment is just one click away, Smile before the spell is sealed forever! 💫"
+      />
       <video
         ref={videoRef}
         autoPlay
         playsInline
-        className="rounded shadow w-full max-w-md"
+        className="rounded shadow w-full max-w-lg"
       />
       <canvas ref={canvasRef} className="hidden" />
 
@@ -72,20 +96,32 @@ export default function PhotoCaptureTemplate({ frame }: Props) {
         <div className="text-4xl font-bold text-red-500">{countdown}</div>
       ) : (
         <Button onClick={startCountdown} disabled={photos.length >= 4}>
-          {photos.length >= 4 ? "Max photos taken" : "Capture Photo"}
+          {photos.length >= 4 ? "Max photos taken" : "Snap"}
         </Button>
       )}
 
-      <div className="grid grid-cols-2 gap-2 w-full max-w-md">
-        {photos.map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            className="rounded border shadow"
-            alt={`Photo ${i + 1}`}
-          />
-        ))}
+      <div className="flex gap-2 w-full items-center text-right justify-center">
+        {photos.length < 1 ? (
+          <div className="flex gap-10 h-[100px]">
+            <div className="bg-primary w-50 rounded"></div>
+            <div className="bg-primary w-50 rounded"></div>
+            <div className="bg-primary w-50 rounded"></div>
+            <div className="bg-primary w-50 rounded"></div>
+          </div>
+        ) : (
+          photos.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              className="rounded border shadow"
+              alt={`Photo ${i + 1}`}
+            />
+          ))
+        )}
       </div>
+      <Button onClick={startCountdown} disabled={photos.length >= 4}>
+        Ta-da! Show Me!
+      </Button>
     </div>
   );
 }

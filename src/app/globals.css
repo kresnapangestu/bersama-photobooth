@@ -62,6 +62,7 @@
 }
 @theme {
   --color-primary: #dcceff;
+  --color-primaryDarker: #bea4ff;
   --color-primaryHover: #b8b1f7;
   --color-primaryActive: #000000;
   --color-primaryDisabled: #e6e4ff;

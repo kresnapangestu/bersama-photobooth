@@ -3,6 +3,7 @@
 import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import PhotoCaptureTemplate from "@/components/templates/PhotoCaptureTemplate";
+import MainLayout from "@/components/layouts/MainLayout";
 
 export default function PhotoCapturePage() {
   return (
@@ -18,5 +19,9 @@ const SearchParamsContent = () => {
 
   if (!frame) return <p className="p-6">No frame selected.</p>;
 
-  return <PhotoCaptureTemplate frame={frame} />;
+  return (
+    <MainLayout>
+      <PhotoCaptureTemplate frame={frame} />
+    </MainLayout>
+  );
 };

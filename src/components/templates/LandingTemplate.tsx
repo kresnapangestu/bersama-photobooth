@@ -1,16 +1,14 @@
 "use client";
 import Image from "next/image";
-import { Navbar } from "../molecules/Navbar";
 import { Hero } from "../molecules/Hero";
 import { Fragment } from "react";
 
 export default function LandingTemplate() {
   return (
     <div className="h-screen w-screen max-w-screen flex">
-      <Navbar />
       <div className="flex flex-col flex-1 px-[70px] py-[30px]">
         <div className="absolute top-120">
-          <Hero />
+          <Hero url="/payment-section" />
         </div>
         <div className="mt-auto">
           <a
@@ -51,7 +49,7 @@ export default function LandingTemplate() {
       </div>
       <div className="relative w-2/5 h-full z-10">
         <Image
-          src="/images/landingpageimage.png"
+          src="/images/landingpageimage.webp"
           layout="fill"
           objectFit="cover"
           alt="Picture of the author"
