@@ -27,9 +27,9 @@ export default function PrivacyTemplate() {
         </span>
         <br />
         <br /> We gather personal information from you in fun and safe ways,
-        whether you're booking a photoshoot, browsing our galleries, or chatting
-        with us about your perfect moments. Here&apos;s how we collect and use
-        your info:
+        whether you&apos;re booking a photoshoot, browsing our galleries, or
+        chatting with us about your perfect moments. Here&apos;s how we collect
+        and use your info:
         <br />
         <br />
         <span className="text-[40px]">What Information We Collect </span> <br />
@@ -64,7 +64,7 @@ export default function PrivacyTemplate() {
           </li>
           <li>
             Marketing with Joy: We may send you lovely updates about new offers,
-            photoshoots, or special promotions we think you'll adore.
+            photoshoots, or special promotions we think you&apos;ll adore.
           </li>
           <li>
             Security: We ensure your data stays protected from prying eyes, so
@@ -120,8 +120,8 @@ export default function PrivacyTemplate() {
         privacy practices, so be sure to check them out before you share any
         info. Your Rights and Choices Depending on where you&apos;re from, you
         may have the right to access, update, or delete your personal
-        information. If you'd like to make any changes to your personal details
-        or exercise your rights, just let us know!
+        information. If you&apos;d like to make any changes to your personal
+        details or exercise your rights, just let us know!
         <br />
         <br />
         <span className="text-[40px]">Security and Retention</span> <br />
