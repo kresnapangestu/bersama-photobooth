@@ -72,12 +72,24 @@
   --color-secondaryActive: #7f8de0;
   --color-secondaryDisabled: #d2d6f9;
 
+  --animate-scroll-left: scroll-left 10s linear infinite;
+  --animate-scroll-right: scroll-right 10s linear infinite;
+
   @keyframes scroll-left {
     0% {
       transform: translateX(0%);
     }
     100% {
       transform: translateX(-100%);
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
     }
   }
 }

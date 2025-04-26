@@ -88,7 +88,7 @@ export default function PhotoCaptureTemplate({ frame }: Props) {
         ref={videoRef}
         autoPlay
         playsInline
-        className="rounded shadow w-full max-w-lg"
+        className="rounded shadow w-full max-w-md"
       />
       <canvas ref={canvasRef} className="hidden" />
 
@@ -120,7 +120,7 @@ export default function PhotoCaptureTemplate({ frame }: Props) {
         )}
       </div>
       <Button onClick={startCountdown} disabled={photos.length >= 4}>
-        Ta-da! Show Me!
+        Time for the final touch!
       </Button>
     </div>
   );

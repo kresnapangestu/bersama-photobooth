@@ -10,6 +10,13 @@ export default function LandingTemplate() {
         <div className="absolute top-120">
           <Hero url="/payment-section" />
         </div>
+        <Image
+          src={"/images/background_item_4.png"}
+          width={700}
+          height={100}
+          alt="image_backround"
+          className="absolute bottom-0 z-0 right-5/14"
+        />
         <div className="mt-auto">
           <a
             className="flex text-sm gap-2 hover:underline hover:underline-offset-4"
@@ -22,7 +29,7 @@ export default function LandingTemplate() {
         </div>
       </div>
       <div className="overflow-hidden absolute w-full top-18 z-20">
-        <div className="whitespace-nowrap animate-[scroll-left_10s_linear_infinite] text-[175px] text-[#DCCEFF] leading-none">
+        <div className="animate-scroll-left whitespace-nowrap text-[175px] text-[#DCCEFF] leading-none">
           {[...Array(20)].map((_, i) => (
             <Fragment key={i}>
               <span className="text-[#C2B8FF] mr-10 font-extrabold leading-none">
@@ -36,7 +43,7 @@ export default function LandingTemplate() {
         </div>
       </div>
       <div className="overflow-hidden absolute w-full top-45 z-20">
-        <div className="whitespace-nowrap animate-[scroll-left_10s_linear_infinite] text-[175px] text-[#DCCEFF]">
+        <div className="animate-scroll-right whitespace-nowrap text-[175px] text-[#DCCEFF]">
           {[...Array(20)].map((_, i) => (
             <Fragment key={i}>
               <span className="mr-10 font-light opacity-40">Ber-sama</span>

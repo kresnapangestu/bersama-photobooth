@@ -60,7 +60,7 @@ const Carousel: React.FC<PropType> = (props) => {
 
             return (
               <div
-                className="embla__slide flex items-center justify-center"
+                className="embla__slide flex items-center justify-center gap-1"
                 key={index}
               >
                 <div
@@ -72,8 +72,8 @@ const Carousel: React.FC<PropType> = (props) => {
                 >
                   <Image
                     src={`/frames/${frame}`}
-                    width={150}
-                    height={90}
+                    width={400}
+                    height={150}
                     alt={`Frame${index + 1}`}
                     className="rounded-lg shadow-lg"
                   />

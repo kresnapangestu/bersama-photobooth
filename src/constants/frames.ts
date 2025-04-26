@@ -7,5 +7,5 @@ export const availableFrames = [
   "frame5.png",
   "frame6.png",
   "frame7.png",
-  "frame8.png",
+  // "frame8.png",
 ];
