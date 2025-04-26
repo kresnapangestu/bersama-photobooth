@@ -11,7 +11,7 @@ export default function LandingTemplate() {
           <Hero url="/payment-section" />
         </div>
         <Image
-          src={"/images/background_item_4.png"}
+          src={"/images/background_item_4.webp"}
           width={700}
           height={100}
           alt="image_backround"
