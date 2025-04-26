@@ -6,32 +6,30 @@ export default function PrivacyTemplate() {
         At Bersama, we believe in making every moment magical, and your privacy
         is a part of that magic. This Privacy Policy explains how we collect,
         use, and protect your personal information when you visit, use our
-        services, or make a purchase from bersama.com (the "Site"). By using our
-        services, you’re agreeing to the collection and use of your information
-        as outlined in this policy. So, let’s dive into how we keep your data as
-        safe as your most treasured memories!
+        services, or make a purchase from bersama.com (the &quot;Site&quot;). By
+        using our services, you&apos;re agreeing to the collection and use of
+        your information as outlined in this policy. So, let&apos;s dive into
+        how we keep your data as safe as your most treasured memories!
         <br />
         <br />
-        <span className="text-[40px]">
-          Changes to This Privacy Policy{" "}
-        </span>{" "}
+        <span className="text-[40px]">Changes to This Privacy Policy</span>
         <br />
         <br />
         We may update this policy as we continue to make the experience at
-        Bersama even more magical. If we make any changes, we’ll let you know by
-        updating the “Last Updated” date here. We might also make tweaks to our
-        practices to reflect the latest trends or legal requirements, so keep an
-        eye out for updates!
+        Bersama even more magical. If we make any changes, we&apos;ll let you
+        know by updating the “Last Updated” date here. We might also make tweaks
+        to our practices to reflect the latest trends or legal requirements, so
+        keep an eye out for updates!
         <br />
         <br />
         <span className="text-[40px]">
-          How We Collect and Use Your Information{" "}
-        </span>{" "}
+          How We Collect and Use Your Information
+        </span>
         <br />
         <br /> We gather personal information from you in fun and safe ways,
         whether you're booking a photoshoot, browsing our galleries, or chatting
-        with us about your perfect moments. Here’s how we collect and use your
-        info:
+        with us about your perfect moments. Here&apos;s how we collect and use
+        your info:
         <br />
         <br />
         <span className="text-[40px]">What Information We Collect </span> <br />
@@ -41,9 +39,8 @@ export default function PrivacyTemplate() {
           <li>
             Contact Details: Your name, email, phone number, and address, so we
             can stay in touch and deliver your magical memories.
-          </li>{" "}
+          </li>
           <li>
-            {" "}
             Order Information: What you pay, downloadable content, payment
             confirmation—everything to ensure your order gets to you just right!
           </li>
@@ -54,9 +51,8 @@ export default function PrivacyTemplate() {
         </ul>
         <br />
         <span className="text-[40px]">
-          {" "}
           How We Use Your Personal Information
-        </span>{" "}
+        </span>
         <br />
         <br />
         We use your personal information to give you the best experience with
@@ -64,28 +60,23 @@ export default function PrivacyTemplate() {
         <ul className="list-disc pl-6">
           <li>
             Creating Magical Memories: We process your orders and photoshoots
-            and keep you updated on your bookings and purchases.{" "}
+            and keep you updated on your bookings and purchases.
           </li>
           <li>
-            {" "}
             Marketing with Joy: We may send you lovely updates about new offers,
-            photoshoots, or special promotions we think you'll adore.{" "}
-          </li>{" "}
+            photoshoots, or special promotions we think you'll adore.
+          </li>
           <li>
             Security: We ensure your data stays protected from prying eyes, so
             you can enjoy a worry-free experience with us.
-          </li>{" "}
+          </li>
           <li>
-            {" "}
-            Customer Support: Whether it’s a question or feedback, we’re here to
-            make sure everything runs smoothly for you!
+            Customer Support: Whether it&apos;s a question or feedback,
+            we&apos;re here to make sure everything runs smoothly for you!
           </li>
         </ul>
         <br />
-        <span className="text-[40px]">
-          {" "}
-          Cookies and Tracking Technologies
-        </span>{" "}
+        <span className="text-[40px]">Cookies and Tracking Technologies</span>
         <br />
         <br />
         We use cookies (the little helpers of the internet!) to improve your
@@ -95,11 +86,11 @@ export default function PrivacyTemplate() {
         browser if you wish!
         <br />
         <br />
-        <span className="text-[40px]"> How We Share Your Information</span>{" "}
+        <span className="text-[40px]"> How We Share Your Information</span>
         <br />
-        <br /> We respect your privacy and only share your information when it’s
-        necessary to make your experience with Bersama as delightful as
-        possible. This could include:
+        <br /> We respect your privacy and only share your information when
+        it&apos;s necessary to make your experience with Bersama as delightful
+        as possible. This could include:
         <ul className="list-disc pl-6">
           <li>
             Our Trusted Partners: Like our payment processors or delivery
@@ -125,12 +116,12 @@ export default function PrivacyTemplate() {
         <br />
         <span className="text-[40px]">Third-Party Links</span> <br />
         <br /> Our site may include links to other magical spaces on the
-        internet! If you click on them, we’re not responsible for their privacy
-        practices, so be sure to check them out before you share any info. Your
-        Rights and Choices Depending on where you’re from, you may have the
-        right to access, update, or delete your personal information. If you'd
-        like to make any changes to your personal details or exercise your
-        rights, just let us know!
+        internet! If you click on them, we&apos;re not responsible for their
+        privacy practices, so be sure to check them out before you share any
+        info. Your Rights and Choices Depending on where you&apos;re from, you
+        may have the right to access, update, or delete your personal
+        information. If you'd like to make any changes to your personal details
+        or exercise your rights, just let us know!
         <br />
         <br />
         <span className="text-[40px]">Security and Retention</span> <br />
