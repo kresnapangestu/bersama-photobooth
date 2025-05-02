@@ -17,9 +17,9 @@ export default function LandingTemplate() {
           alt="image_backround"
           className="absolute bottom-0 z-0 right-5/14"
         />
-        <div className="mt-auto">
+        <div className="mt-auto z-10">
           <a
-            className="flex text-sm gap-2 hover:underline hover:underline-offset-4"
+            className="flex text-sm gap-2 hover:underline hover:underline-offset-4 "
             target="_blank"
             rel="noopener noreferrer"
           >

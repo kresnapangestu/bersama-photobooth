@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/atoms/Button";
 import { Headline } from "../molecules/Headline";
+import { useRouter } from "next/navigation";
 
 interface Props {
   frame: string;
 }
 
 export default function PhotoCaptureTemplate({ frame }: Props) {
+  const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [photos, setPhotos] = useState<string[]>([]);
@@ -119,7 +121,10 @@ export default function PhotoCaptureTemplate({ frame }: Props) {
           ))
         )}
       </div>
-      <Button onClick={startCountdown} disabled={photos.length >= 4}>
+      <Button
+        onClick={() => router.push("/adjustment-page")}
+        disabled={photos.length >= 4}
+      >
         Time for the final touch!
       </Button>
     </div>
