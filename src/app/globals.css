@@ -1,53 +1,7 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Funnel Display";
-  src: url("/public/fonts/FunnelDisplay-Light.ttf") format("ttf");
-  font-weight: 300; /* Atur ketebalan font yang sesuai */
-  font-style: normal;
-  font-display: swap; /* Opsional: untuk mengontrol bagaimana font dirender saat belum diunduh */
-}
-
-@font-face {
-  font-family: "Funnel Display";
-  src: url("/public/fonts/FunnelDisplay-Regular.ttf") format("ttf");
-  font-weight: 400; /* Atur ketebalan font yang sesuai */
-  font-style: normal;
-  font-display: swap; /* Opsional: untuk mengontrol bagaimana font dirender saat belum diunduh */
-}
-
-@font-face {
-  font-family: "Funnel Display";
-  src: url("/public/fonts/FunnelDisplay-Medium.ttf") format("ttf");
-  font-weight: 500; /* Atur ketebalan font yang sesuai */
-  font-style: normal;
-  font-display: swap; /* Opsional: untuk mengontrol bagaimana font dirender saat belum diunduh */
-}
-
-@font-face {
-  font-family: "Funnel Display";
-  src: url("/public/fonts/FunnelDisplay-SemiBold.ttf") format("ttf");
-  font-weight: 600; /* Atur ketebalan font yang sesuai */
-  font-style: normal;
-  font-display: swap; /* Opsional: untuk mengontrol bagaimana font dirender saat belum diunduh */
-}
-
-/* Tambahkan varian font lain jika ada (misalnya, bold, italic) */
-@font-face {
-  font-family: "Funnel Display";
-  src: url("/public/fonts/FunnelDisplay-Bold.ttf") format("ttf");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Funnel Display";
-  src: url("/public/fonts/FunnelDisplay-ExtraBold.ttf") format("ttf");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
+/* Font files are self-hosted via next/font/local (src/lib/fonts.ts), which
+   preloads them and exposes --font-funnel-display. */
 
 :root {
   --background: #fbf9fe;
@@ -57,9 +11,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Funnel Display", sans-serif;
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-funnel-display), sans-serif;
 }
+
 @theme {
   --color-primary: #dcceff;
   --color-primaryDarker: #bea4ff;
@@ -72,24 +26,28 @@
   --color-secondaryActive: #7f8de0;
   --color-secondaryDisabled: #d2d6f9;
 
-  --animate-scroll-left: scroll-left 10s linear infinite;
-  --animate-scroll-right: scroll-right 10s linear infinite;
+  --color-accent: #c2b8ff;
+  --color-accentStrong: #ae8dff;
 
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0%);
+  /* Track = two identical copies, so -50% is exactly one copy: a seamless loop. */
+  --animate-marquee-left: marquee-left 40s linear infinite;
+  --animate-marquee-right: marquee-right 40s linear infinite;
+
+  @keyframes marquee-left {
+    from {
+      transform: translate3d(0, 0, 0);
     }
-    100% {
-      transform: translateX(-100%);
+    to {
+      transform: translate3d(-50%, 0, 0);
     }
   }
 
-  @keyframes scroll-right {
-    0% {
-      transform: translateX(-100%);
+  @keyframes marquee-right {
+    from {
+      transform: translate3d(-50%, 0, 0);
     }
-    100% {
-      transform: translateX(0%);
+    to {
+      transform: translate3d(0, 0, 0);
     }
   }
 }
@@ -97,10 +55,4 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  /* font-family: Arial, Helvetica, sans-serif; */
-  font-family: "Funnel Display", sans-serif;
-}
-
-.animate-scroll-x {
-  animation: scroll-x 20s linear infinite;
 }

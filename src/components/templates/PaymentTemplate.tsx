@@ -1,57 +1,58 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { Headline } from "../molecules/Headline";
 import Image from "next/image";
 import Link from "next/link";
+import { Headline } from "../molecules/Headline";
 import { Input } from "../atoms/Input";
-import { Button } from "../atoms/Button";
+import { ButtonLink } from "../atoms/Button";
+import { ROUTES } from "@/constants/routes";
+import { SITE } from "@/constants/site";
+
+const MAGIC_KEY_LENGTH = 6;
 
 export default function PaymentTemplate() {
-  const router = useRouter();
-
   return (
-    <div className="p-6 flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-6 p-6">
       <Headline
         caption="Make It Officially Magical"
-        subcaption="Scan the QR code & sprinkle Rp 10.000 to 
- complete the magic ritual and enter the realm of glittering memories — a world of frames, fun, and flair awaits 🌟"
+        subcaption="Scan the QR code & sprinkle Rp 10.000 to complete the magic ritual and enter the realm of glittering memories — a world of frames, fun, and flair awaits 🌟"
       />
-      <div className="flex flex-col gap-5 items-center">
+      <div className="flex flex-col items-center gap-5">
         <Image
-          src={`/images/qris_logo.webp`}
+          src="/images/qris_logo.webp"
           width={250}
           height={120}
-          alt={`QRIS Logo`}
+          alt="QRIS — QR Code Standar Pembayaran Nasional"
         />
-        <span className="text-xl font-bold">SAMA BANDUNG</span>
+        <p className="text-xl font-bold uppercase">{SITE.owner}</p>
         <Image
-          src={`/images/QRCODE.webp`}
+          src="/images/QRCODE.webp"
           width={300}
           height={120}
-          alt={`QRIS CODE`}
+          alt={`QRIS payment code for ${SITE.owner}`}
           className="mt-[-30px]"
         />
       </div>
-      <div className="flex gap-5 flex-col text-center">
-        <span className="text-base">
-          Already paid but not redirected ?{" "}
+      <div className="flex flex-col gap-5 text-center">
+        <p>
+          Already paid but not redirected?{" "}
           <Link
-            href={"/frame-selection"}
-            passHref
-            className="underline text-primaryDarker hover:text-primaryHover active:text-primaryActive"
+            href={ROUTES.frameSelection}
+            className="text-primaryDarker underline hover:text-primaryHover active:text-primaryActive"
           >
-            click here
+            Click here
           </Link>
-        </span>
-        <span className="text-base">
-          Or are you already have a magic key? Enter it below to ignite your
+        </p>
+        <label htmlFor="magic-key">
+          Or do you already have a magic key? Enter it below to ignite your
           moment!
-        </span>
+        </label>
         <div className="flex gap-2 self-center">
-          <Input maxInput={6} />
-          <Link href={"/frame-selection"} passHref>
-            <Button>Open the Portal!</Button>
-          </Link>
+          <Input
+            id="magic-key"
+            name="magicKey"
+            maxInput={MAGIC_KEY_LENGTH}
+            autoComplete="off"
+          />
+          <ButtonLink href={ROUTES.frameSelection}>Open the Portal!</ButtonLink>
         </div>
       </div>
     </div>

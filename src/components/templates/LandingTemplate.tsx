@@ -1,65 +1,102 @@
-"use client";
 import Image from "next/image";
-import { Hero } from "../molecules/Hero";
 import { Fragment } from "react";
+import clsx from "clsx";
+import { Hero } from "../molecules/Hero";
+import { Footer } from "../molecules/Footer";
+import { DecorativeImage } from "../atoms/DecorativeImage";
+import { ROUTES } from "@/constants/routes";
+import { SITE } from "@/constants/site";
+
+/** Phrase repeats per copy; one copy must be wider than the widest viewport. */
+const PHRASES_PER_COPY = 3;
+
+interface MarqueeRowProps {
+  words: [string, string];
+  /** Index of the word rendered bold; the other one is light. */
+  boldIndex: 0 | 1;
+  direction: "left" | "right";
+  className?: string;
+}
+
+/**
+ * Seamless loop: the track holds two identical copies and slides exactly one
+ * copy width (-50%), so the end frame matches the start frame with no jump.
+ */
+const MarqueeRow = ({ words, boldIndex, direction, className }: MarqueeRowProps) => {
+  const copy = Array.from({ length: PHRASES_PER_COPY }, (_, i) => (
+    <Fragment key={i}>
+      {words.map((word, wordIndex) => (
+        <span
+          key={word}
+          className={clsx(
+            "pr-10",
+            wordIndex === boldIndex
+              ? "font-extrabold text-accent"
+              : "font-light opacity-40"
+          )}
+        >
+          {word}
+        </span>
+      ))}
+    </Fragment>
+  ));
+
+  return (
+    <div className={clsx("absolute inset-x-0 z-20 overflow-hidden", className)}>
+      <div
+        className={clsx(
+          "flex w-max whitespace-nowrap text-[175px] text-primary will-change-transform motion-reduce:animate-none",
+          direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
+        )}
+      >
+        <div className="flex shrink-0">{copy}</div>
+        <div className="flex shrink-0">{copy}</div>
+      </div>
+    </div>
+  );
+};
 
 export default function LandingTemplate() {
   return (
-    <div className="h-screen w-screen max-w-screen flex">
-      <div className="flex flex-col flex-1 px-[70px] py-[30px]">
+    <div className="flex h-screen w-screen max-w-screen">
+      <h1 className="sr-only">{SITE.title}</h1>
+      <div className="flex flex-1 flex-col px-[70px] py-[30px]">
         <div className="absolute top-120">
-          <Hero url="/payment-section" />
+          <Hero href={ROUTES.payment} />
         </div>
-        <Image
-          src={"/images/background_item_4.webp"}
+        <DecorativeImage
+          src="/images/background_item_4.webp"
           width={700}
           height={100}
-          alt="image_backround"
           className="absolute bottom-0 z-0 right-5/14"
         />
-        <div className="mt-auto z-10">
-          <a
-            className="flex text-sm gap-2 hover:underline hover:underline-offset-4 "
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            All frames and designs on this website are the intellectual property
-            of Sama Bandung © 2025. All rights reserved.
-          </a>
-        </div>
+        <Footer className="mt-auto text-sm" />
       </div>
-      <div className="overflow-hidden absolute w-full top-18 z-20">
-        <div className="animate-scroll-left whitespace-nowrap text-[175px] text-[#DCCEFF] leading-none">
-          {[...Array(20)].map((_, i) => (
-            <Fragment key={i}>
-              <span className="text-[#C2B8FF] mr-10 font-extrabold leading-none">
-                Ber-sama
-              </span>
-              <span className="mr-10 font-light opacity-40 leading-none">
-                Photo Booth
-              </span>
-            </Fragment>
-          ))}
-        </div>
+
+      {/* Decorative brand marquee; the real heading is the sr-only <h1> above. */}
+      <div aria-hidden="true">
+        <MarqueeRow
+          words={["Ber-sama", "Photo Booth"]}
+          boldIndex={0}
+          direction="left"
+          className="top-18 leading-none"
+        />
+        <MarqueeRow
+          words={["Ber-sama", "Photo Booth"]}
+          boldIndex={1}
+          direction="right"
+          className="top-45"
+        />
       </div>
-      <div className="overflow-hidden absolute w-full top-45 z-20">
-        <div className="animate-scroll-right whitespace-nowrap text-[175px] text-[#DCCEFF]">
-          {[...Array(20)].map((_, i) => (
-            <Fragment key={i}>
-              <span className="mr-10 font-light opacity-40">Ber-sama</span>
-              <span className="text-[#C2B8FF] mr-10 font-extrabold">
-                Photo Booth
-              </span>
-            </Fragment>
-          ))}
-        </div>
-      </div>
-      <div className="relative w-2/5 h-full z-10">
+
+      <div className="relative z-10 h-full w-2/5">
         <Image
           src="/images/landingpageimage.webp"
-          layout="fill"
-          objectFit="cover"
-          alt="Picture of the author"
+          alt="A hand holding a Ber-sama photo strip with four smiling portraits"
+          fill
+          priority
+          sizes="40vw"
+          className="object-cover"
         />
       </div>
     </div>

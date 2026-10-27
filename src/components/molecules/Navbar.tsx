@@ -1,36 +1,26 @@
 import Image from "next/image";
+import Link from "next/link";
+import { NAV_LINKS, ROUTES } from "@/constants/routes";
+import { SITE } from "@/constants/site";
 
-export const Navbar = () => {
-  return (
-    <div className="fixed top-0 left-0 overflow-hidden w-full max-w-screen rounded-lg flex justify-between  z-30 px-[70px] py-[30px] items-center">
-      <a href={`/`}>
-        <Image
-          src={"/images/logo-bersama.png"}
-          width={150}
-          height={18}
-          alt="logo"
-        />
-      </a>
-      <div className="bg-white rounded-full flex gap-[20px] px-10 py-[5px]">
-        <a
-          className="cursor-pointer hover:text-primaryHover active:text-primaryActive"
-          href={`/`}
-        >
-          Home
-        </a>
-        <a
-          className="cursor-pointer hover:text-primaryHover active:text-primaryActive"
-          href={`/about`}
-        >
-          About
-        </a>
-        <a
-          className="cursor-pointer hover:text-primaryHover active:text-primaryActive"
-          href={`/privacy-policy`}
-        >
-          Privacy
-        </a>
-      </div>
-    </div>
-  );
-};
+export const Navbar = () => (
+  <header className="fixed top-0 left-0 z-30 flex w-full max-w-screen items-center justify-between overflow-hidden rounded-lg px-[70px] py-[30px]">
+    <Link href={ROUTES.home}>
+      <Image src={SITE.logo} width={150} height={23} alt={SITE.name} priority />
+    </Link>
+    <nav aria-label="Main">
+      <ul className="flex gap-[20px] rounded-full bg-white px-10 py-[5px]">
+        {NAV_LINKS.map(({ label, href }) => (
+          <li key={href}>
+            <Link
+              href={href}
+              className="hover:text-primaryHover active:text-primaryActive"
+            >
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </header>
+);

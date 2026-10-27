@@ -1,20 +1,15 @@
-import Link from "next/link";
-import { Button } from "../atoms/Button";
+import { ButtonLink } from "../atoms/Button";
 
 interface HeroProps {
-  url?: string;
+  href: string;
 }
 
-export const Hero = ({ url }: HeroProps) => {
-  return (
-    <div className="flex-1 flex flex-col gap-6">
-      <p className="text-xl max-w-md min-w-[447px]">
-        Snap, smile, repeat — anytime, anywhere let <b>Ber-sama</b> Photo Booth
-        turn fleeting moments into lasting memories!
-      </p>
-      <Link href={url || "#"} passHref>
-        <Button>Snap It Now!</Button>
-      </Link>
-    </div>
-  );
-};
+export const Hero = ({ href }: HeroProps) => (
+  <div className="flex flex-1 flex-col items-start gap-6">
+    <p className="max-w-md min-w-[447px] text-xl">
+      Snap, smile, repeat — anytime, anywhere let <b>Ber-sama</b> Photo Booth
+      turn fleeting moments into lasting memories!
+    </p>
+    <ButtonLink href={href}>Snap It Now!</ButtonLink>
+  </div>
+);

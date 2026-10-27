@@ -1,14 +1,13 @@
+import type { Metadata } from "next";
 import LandingTemplate from "@/components/templates/LandingTemplate";
-import React from "react";
+import { SITE } from "@/constants/site";
+import { ROUTES } from "@/constants/routes";
 
-const Home: React.FC = () => {
-  return (
-    <div>
-      <main className="flex flex-col w-full flex-grow">
-        <LandingTemplate />
-      </main>
-    </div>
-  );
+export const metadata: Metadata = {
+  title: { absolute: SITE.title },
+  alternates: { canonical: ROUTES.home },
 };
 
-export default Home;
+export default function HomePage() {
+  return <LandingTemplate />;
+}

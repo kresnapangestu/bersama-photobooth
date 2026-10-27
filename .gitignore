@@ -33,10 +33,38 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# vercel
+# deployment
 .vercel
+.netlify
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI assistants & agents (local config, memory, generated context)
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json
+AGENTS.md
+.agents/
+.cursor/
+.cursorrules
+.cursorignore
+.windsurf/
+.windsurfrules
+.codeium/
+.github/copilot-instructions.md
+.copilot/
+.aider*
+.continue/
+.gemini/
+GEMINI.md
+.codex/
 .qodo
+.tabnine/
+.roo/
+.clinerules
+.kiro/
+.junie/
+graphify-out/

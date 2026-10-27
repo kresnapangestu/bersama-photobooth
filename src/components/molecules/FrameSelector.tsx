@@ -1,21 +1,17 @@
-import { EmblaOptionsType } from "embla-carousel";
-import Image from "next/image";
+import type { EmblaOptionsType } from "embla-carousel";
 import Carousel from "./Carousel";
+import type { FrameLayout } from "@/constants/frames";
 import "../../app/carousel.css";
 
-// components/atoms/FrameSelector.tsx
 interface FrameSelectorProps {
-  frames: string[];
-  onSelect: (frame: string) => void;
+  frames: FrameLayout[];
+  onSelect: (frameId: string) => void;
 }
-const OPTIONS: EmblaOptionsType = { loop: true };
-const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
-export const FrameSelector = ({ frames, onSelect }: FrameSelectorProps) => {
-  return (
-    <div className="flex w-[80vw]">
-      <Carousel slides={frames} options={OPTIONS} onSelect={onSelect} />
-    </div>
-  );
-};
+const OPTIONS: EmblaOptionsType = { loop: true };
+
+export const FrameSelector = ({ frames, onSelect }: FrameSelectorProps) => (
+  <div className="flex w-[80vw]">
+    <Carousel slides={frames} options={OPTIONS} onSelect={onSelect} />
+  </div>
+);

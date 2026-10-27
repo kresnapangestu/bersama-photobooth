@@ -1,43 +1,42 @@
-"use client";
+import type { ReactNode } from "react";
+import {
+  DecorativeImage,
+  type DecorativeImageProps,
+} from "../atoms/DecorativeImage";
+import { Footer } from "../molecules/Footer";
 
-import Image from "next/image";
-import { ReactNode } from "react";
+const DECORATIONS: DecorativeImageProps[] = [
+  {
+    src: "/images/background_item_1.webp",
+    width: 550,
+    height: 120,
+    className: "fixed right-[-3em] top-10",
+  },
+  {
+    src: "/images/background_item_2.webp",
+    width: 380,
+    height: 120,
+    className: "fixed right-0 bottom-[-10em]",
+  },
+  {
+    src: "/images/background_item_3.webp",
+    width: 350,
+    height: 120,
+    className: "fixed bottom-0 left-[-2rem]",
+  },
+];
 
-interface MainLayoutProps {
-  children: ReactNode;
-}
-
-export default function MainLayout({ children }: MainLayoutProps) {
+/** Shell for the booth flow: fixed ornaments and a footer pinned under the content. */
+export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="h-[92vh] flex flex-col mt-[50px] relative">
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image
-          src={`/images/background_item_1.webp`}
-          width={550}
-          height={120}
-          alt={`background_image_1`}
-          className="fixed right-[-3em] top-10"
-        />
-        <Image
-          src={`/images/background_item_2.webp`}
-          width={380}
-          height={120}
-          alt={`background_image_2`}
-          className="fixed right-0 bottom-[-10em]"
-        />
-        <Image
-          src={`/images/background_item_3.webp`}
-          width={350}
-          height={120}
-          alt={`background_image_3`}
-          className="fixed  bottom-0 left-[-2rem]"
-        />
+    <div className="relative mt-[50px] flex h-[92vh] flex-col">
+      <div className="pointer-events-none absolute inset-0 z-0">
+        {DECORATIONS.map((decoration) => (
+          <DecorativeImage key={decoration.src} {...decoration} />
+        ))}
       </div>
       <div className="relative z-10 flex-1 px-4 pt-6">{children}</div>
-      <footer className="relative z-10 text-center text-xs px-4">
-        All frames and designs on this website are the intellectual property of
-        Sama Bandung © 2025. All rights reserved.
-      </footer>
+      <Footer className="px-4 text-center" />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image"; // ✅ Add this
+import Image from "next/image";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import type { FrameLayout } from "@/constants/frames";
 import { useAutoplay } from "../atoms/CarouselAutoPlay";
 import {
   NextButton,
@@ -11,9 +12,9 @@ import {
 } from "../atoms/CarouselArrowButtons";
 
 type PropType = {
-  slides: string[];
+  slides: FrameLayout[];
   options?: EmblaOptionsType;
-  onSelect: (frame: string) => void;
+  onSelect: (frameId: string) => void;
 };
 
 const Carousel: React.FC<PropType> = (props) => {
@@ -36,12 +37,15 @@ const Carousel: React.FC<PropType> = (props) => {
   useEffect(() => {
     if (!emblaApi) return;
 
-    const onSelect = () => {
+    const syncSelectedIndex = () => {
       setSelectedIndex(emblaApi.selectedScrollSnap());
     };
 
-    emblaApi.on("select", onSelect);
-    onSelect(); // Initialize
+    syncSelectedIndex();
+    emblaApi.on("select", syncSelectedIndex);
+    return () => {
+      emblaApi.off("select", syncSelectedIndex);
+    };
   }, [emblaApi]);
 
   return (
@@ -61,23 +65,26 @@ const Carousel: React.FC<PropType> = (props) => {
             return (
               <div
                 className="embla__slide flex items-center justify-center gap-1"
-                key={index}
+                key={frame.id}
               >
-                <div
-                  key={index}
-                  className={`embla__slide__number ${opacity} cursor-pointer duration-300 ease-in-out hover:scale-108 hover:!opacity-100`}
-                  onClick={() => onSelect(frame)}
+                <button
+                  type="button"
+                  aria-label={`Use ${frame.name}`}
+                  className={`embla__slide__number ${opacity} cursor-pointer duration-300 ease-in-out hover:scale-108 hover:!opacity-100 focus-visible:!opacity-100 focus-visible:outline-2 focus-visible:outline-primaryDarker`}
+                  onClick={() => onSelect(frame.id)}
                   onMouseEnter={() => autoplay.current?.stop()}
                   onMouseLeave={() => autoplay.current?.play()}
+                  onFocus={() => autoplay.current?.stop()}
+                  onBlur={() => autoplay.current?.play()}
                 >
                   <Image
-                    src={`/frames/${frame}`}
+                    src={frame.preview}
                     width={400}
                     height={150}
-                    alt={`Frame${index + 1}`}
+                    alt={`${frame.name} photo strip design`}
                     className="rounded-lg shadow-lg"
                   />
-                </div>
+                </button>
               </div>
             );
           })}
