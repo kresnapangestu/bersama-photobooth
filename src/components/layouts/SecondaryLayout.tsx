@@ -1,16 +1,12 @@
 import type { ReactNode } from "react";
-import clsx from "clsx";
-import {
-  DecorativeImage,
-  type DecorativeImageProps,
-} from "../atoms/DecorativeImage";
-import { Footer } from "../molecules/Footer";
+import type { DecorativeImageProps } from "../atoms/DecorativeImage";
+import PageShell from "./PageShell";
 
 type LayoutHeight = "screen" | "fit";
 
 interface SecondaryLayoutProps {
   children: ReactNode;
-  /** "screen" pins ornaments to the viewport; "fit" scatters them down a long page. */
+  /** "screen": one-screen page. "fit": long page; ornaments are scattered down it. */
   height?: LayoutHeight;
 }
 
@@ -19,64 +15,65 @@ const DECORATIONS: Record<LayoutHeight, DecorativeImageProps[]> = {
     {
       src: "/images/background_item_1.webp",
       width: 600,
-      height: 120,
-      className: "fixed bottom-[-5em] right-[-3em]",
+      height: 543,
+      className:
+        "absolute -right-12 -bottom-20 h-auto w-[clamp(10rem,40vw,37.5rem)]",
     },
     {
       src: "/images/background_item_5.webp",
       width: 400,
-      height: 120,
-      className: "fixed top-20 left-0",
+      height: 632,
+      className: "absolute top-20 left-0 h-auto w-[clamp(7rem,26vw,25rem)]",
     },
   ],
   fit: [
     {
       src: "/images/background_item_1.webp",
       width: 600,
-      height: 120,
-      className: "absolute top-[500px] right-[-3em]",
+      height: 543,
+      className: "absolute top-[30rem] -right-12 h-auto w-[clamp(10rem,40vw,37.5rem)]",
     },
     {
       src: "/images/background_item_5.webp",
       width: 400,
-      height: 120,
-      className: "absolute top-30 left-0",
+      height: 632,
+      className: "absolute top-8 left-0 h-auto w-[clamp(7rem,26vw,25rem)]",
     },
     {
       src: "/images/background_item_3.webp",
       width: 400,
-      height: 120,
-      className: "absolute top-[1000px] left-[-5em]",
+      height: 711,
+      className: "absolute top-[62rem] -left-20 h-auto w-[clamp(7rem,26vw,25rem)]",
     },
     {
       src: "/images/background_item_2.webp",
       width: 400,
-      height: 120,
-      className: "absolute top-[90rem] right-[-5em]",
+      height: 464,
+      className: "absolute top-[90rem] -right-20 h-auto w-[clamp(7rem,26vw,25rem)]",
     },
     {
       src: "/images/background_item_6.webp",
       width: 300,
-      height: 120,
-      className: "absolute top-[115rem] left-[-5em]",
+      height: 465,
+      className: "absolute top-[115rem] -left-20 h-auto w-[clamp(6rem,20vw,19rem)]",
     },
     {
       src: "/images/background_item_8.webp",
       width: 150,
-      height: 50,
-      className: "absolute top-[125rem] right-[-1em]",
+      height: 494,
+      className: "absolute top-[125rem] -right-4 h-auto w-[clamp(4rem,10vw,9.5rem)]",
     },
     {
       src: "/images/background_item_7.webp",
       width: 400,
-      height: 120,
-      className: "absolute top-[155rem] left-[-4em]",
+      height: 378,
+      className: "absolute top-[155rem] -left-16 h-auto w-[clamp(7rem,26vw,25rem)]",
     },
     {
       src: "/images/background_item_4.webp",
       width: 350,
-      height: 50,
-      className: "absolute top-[180rem] right-0",
+      height: 159,
+      className: "absolute top-[180rem] right-0 h-auto w-[clamp(7rem,23vw,22rem)]",
     },
   ],
 };
@@ -87,19 +84,8 @@ export default function SecondaryLayout({
   height = "fit",
 }: SecondaryLayoutProps) {
   return (
-    <div className="relative mt-[50px] flex flex-col">
-      <div
-        className={clsx(
-          "pointer-events-none inset-0 z-0",
-          height === "screen" && "absolute"
-        )}
-      >
-        {DECORATIONS[height].map((decoration) => (
-          <DecorativeImage key={decoration.src} {...decoration} />
-        ))}
-      </div>
-      <div className="relative z-10 mb-5 flex-1 px-4 pt-6">{children}</div>
-      <Footer className="px-4 text-center" />
-    </div>
+    <PageShell decorations={DECORATIONS[height]} scrollable={height === "fit"}>
+      {children}
+    </PageShell>
   );
 }

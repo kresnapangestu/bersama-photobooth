@@ -16,7 +16,7 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
 
 const buttonStyles = (variant: ButtonVariant, disabled?: boolean) =>
   clsx(
-    "inline-block px-6 py-2 rounded-lg font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primaryDarker",
+    "inline-block px-6 py-2 rounded-lg font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primaryDarker short:px-4 short:py-1.5 short:text-sm",
     disabled ? "bg-gray-400 cursor-not-allowed" : ["cursor-pointer", VARIANT_STYLES[variant]]
   );
 

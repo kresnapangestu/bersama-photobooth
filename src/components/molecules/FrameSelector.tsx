@@ -11,7 +11,7 @@ interface FrameSelectorProps {
 const OPTIONS: EmblaOptionsType = { loop: true };
 
 export const FrameSelector = ({ frames, onSelect }: FrameSelectorProps) => (
-  <div className="flex w-[80vw]">
+  <div className="-mx-gutter flex min-h-0 flex-1 flex-col self-stretch">
     <Carousel slides={frames} options={OPTIONS} onSelect={onSelect} />
   </div>
 );

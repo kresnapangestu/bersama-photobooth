@@ -3,9 +3,35 @@
 /* Font files are self-hosted via next/font/local (src/lib/fonts.ts), which
    preloads them and exposes --font-funnel-display. */
 
+/*
+ * fit:  the viewport is big enough to show a whole page at once (desktop at any
+ *       common zoom, tablets, unfolded foldables). Pages lock to one screen and
+ *       size their main visual from the height that's left. Smaller viewports
+ *       (phones, very high zoom) scroll instead, so nothing is clipped.
+ * wide: landscape with room for a side-by-side layout.
+ */
+@custom-variant fit (@media (min-width: 40rem) and (min-height: 25rem));
+@custom-variant wide (@media (min-width: 40rem) and (orientation: landscape));
+/* short: little height to spare (laptops at high zoom, phones in landscape). */
+@custom-variant short (@media (max-height: 35rem));
+/* split: room for two columns, either from width or from a landscape screen.
+   Declared after `fit` so its utilities win when both apply. */
+@custom-variant split {
+  @media (min-width: 48rem), (min-width: 40rem) and (orientation: landscape) {
+    @slot;
+  }
+}
+
 :root {
   --background: #fbf9fe;
   --foreground: #4c4672;
+  --nav-h: 4rem;
+}
+
+@media (min-width: 40rem) and (min-height: 25rem) {
+  :root {
+    --nav-h: clamp(3.5rem, 11dvh, 6rem);
+  }
 }
 
 @theme inline {
@@ -15,6 +41,14 @@
 }
 
 @theme {
+  --spacing-gutter: clamp(1rem, 5vw, 4.375rem);
+  --spacing-flow: clamp(0.75rem, 2.5dvh, 1.5rem);
+
+  --text-title: clamp(1.125rem, 0.6rem + 1.4vw, 1.625rem);
+  --text-title--line-height: 1.25;
+  --text-display: clamp(2rem, 1rem + 3vw, 3.125rem);
+  --text-display--line-height: 1.1;
+
   --color-primary: #dcceff;
   --color-primaryDarker: #bea4ff;
   --color-primaryHover: #b8b1f7;

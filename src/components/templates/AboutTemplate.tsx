@@ -1,8 +1,8 @@
 export default function AboutTemplate() {
   return (
-    <section className="flex h-[80vh] flex-col items-center justify-center gap-6 p-6 font-semibold">
-      <h1 className="text-[50px]">About</h1>
-      <p className="w-[50vw] text-center text-xl">
+    <section className="flex flex-1 flex-col items-center justify-center gap-flow py-flow text-center font-semibold">
+      <h1 className="text-display">About</h1>
+      <p className="max-w-3xl text-base text-pretty sm:text-lg lg:text-xl">
         Ber-sama is more than just for those who chase the results—it&apos;s for
         the dreamers, the explorers, and those who want to create magical
         memories that last forever! Whether you&apos;re looking to capture

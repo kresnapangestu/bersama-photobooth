@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button, ButtonLink } from "@/components/atoms/Button";
+import { AspectFit } from "@/components/atoms/AspectFit";
 import { Headline } from "../molecules/Headline";
 import { EmptyState } from "../molecules/EmptyState";
 import { StripPreview } from "../molecules/StripPreview";
@@ -69,14 +70,23 @@ export default function ResultTemplate() {
 
   const isBusy = pending !== null;
 
+  // Landscape: copy | strip | actions, with equal side columns so
+  // the strip sits dead centre. Everything else: one centred column.
   return (
-    <div className="flex flex-col items-center gap-6 p-6 text-center">
+    <div className="flex min-h-0 flex-1 flex-col items-center gap-flow wide:grid wide:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,1fr)] wide:grid-rows-[minmax(0,1fr)] wide:items-center wide:gap-10">
       <Headline
         caption="✨ With a sprinkle of stardust… voilà!"
         subcaption="And Ta-da!—the magic’s done! No doubt—this result is pure magic! Tag Ber-sama whenever this magic touches the social media timeline! Thank you very much for using our service! 🎀🫶🏻💓"
+        className="wide:items-start wide:text-left"
       />
-      <StripPreview strip={strip} aspectRatio={frame.width / frame.height} />
-      <div className="flex flex-wrap justify-center gap-5">
+      <AspectFit
+        ratio={frame.width / frame.height}
+        mobileHeight="70svh"
+        className="wide:h-full"
+      >
+        <StripPreview strip={strip} />
+      </AspectFit>
+      <div className="flex w-full max-w-xs shrink-0 flex-col items-stretch gap-3 text-center sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center wide:max-w-xs wide:flex-col wide:justify-self-start">
         <Button
           variant="secondary"
           onClick={downloadStrip}
@@ -90,13 +100,15 @@ export default function ResultTemplate() {
         <Button variant="secondary" onClick={downloadPictures} disabled={isBusy}>
           {pending === "pictures" ? "Saving…" : "Download Picture! 🖼️"}
         </Button>
+        {failed && (
+          <p role="alert" className="basis-full text-sm text-red-500">
+            Something went wrong while saving. Please try again.
+          </p>
+        )}
+        <ButtonLink href={ROUTES.payment} className="basis-full sm:basis-auto">
+          Add another sparkle to your gallery! 📸
+        </ButtonLink>
       </div>
-      {failed && (
-        <p role="alert" className="text-sm text-red-500">
-          Something went wrong while saving. Please try again.
-        </p>
-      )}
-      <ButtonLink href={ROUTES.payment}>Add another sparkle to your gallery! 📸</ButtonLink>
     </div>
   );
 }

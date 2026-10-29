@@ -135,6 +135,16 @@ export const FRAMES: FrameLayout[] = [
     { shot: 2, x: 784, y: 1081, width: 603, height: 463 },
     { shot: 3, x: 784, y: 1602, width: 604, height: 464 },
   ]),
+  // The design numbers its windows 1, 2, 4 (no 3), so pink is shot 3 here:
+  // generated with --fill 255,193,193:3
+  frame(8, "Midnight", { width: 3620, height: 5670 }, [
+    { shot: 0, x: 105, y: 100, width: 1600, height: 1750 },
+    { shot: 1, x: 105, y: 1904, width: 1600, height: 1751 },
+    { shot: 2, x: 105, y: 3709, width: 1600, height: 1751 },
+    { shot: 2, x: 1915, y: 100, width: 1600, height: 1750 },
+    { shot: 0, x: 1915, y: 1904, width: 1600, height: 1751 },
+    { shot: 1, x: 1915, y: 3709, width: 1600, height: 1751 },
+  ]),
 ];
 
 export const getFrame = (id: string) => FRAMES.find((frame) => frame.id === id);

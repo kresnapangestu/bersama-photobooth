@@ -18,7 +18,7 @@ export default function FrameSelectionTemplate() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 p-6">
+    <div className="flex min-h-0 flex-1 flex-col items-center gap-flow">
       <Headline
         caption="Ready to shine? Pick a frame!"
         subcaption="✨A click, a smile, a dash of flair — choose your enchanted frame and let the magic begin!  📸"

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
@@ -48,10 +48,15 @@ const Carousel: React.FC<PropType> = (props) => {
     };
   }, [emblaApi]);
 
+  // Landscape fit screens size slides from the carousel's own height (cqh);
+  // portrait screens from the viewport, leaving room for the text and controls.
   return (
-    <div className="embla w-full h-[32rem] justify-items-center">
-      <div className="embla__viewport h-full w-full" ref={emblaRef}>
-        <div className="embla__container items-center h-full">
+    <div className="embla flex min-h-0 w-full flex-1 flex-col items-center justify-center [--slide-h:min(55svh,100svh_-_21rem)] [--slide-max-w:62vw] fit:landscape:[--slide-h:86cqh] fit:landscape:[--slide-max-w:34cqw]">
+      <div
+        className="embla__viewport min-h-0 w-full py-3 fit:landscape:flex-1 fit:landscape:[container-type:size]"
+        ref={emblaRef}
+      >
+        <div className="embla__container h-full items-center">
           {slides.map((frame, index) => {
             const distance = Math.abs(index - selectedIndex);
             let opacity = "opacity-50";
@@ -64,13 +69,14 @@ const Carousel: React.FC<PropType> = (props) => {
 
             return (
               <div
-                className="embla__slide flex items-center justify-center gap-1"
+                className="embla__slide flex items-center justify-center"
+                style={{ "--slide-ratio": frame.width / frame.height } as CSSProperties}
                 key={frame.id}
               >
                 <button
                   type="button"
                   aria-label={`Use ${frame.name}`}
-                  className={`embla__slide__number ${opacity} cursor-pointer duration-300 ease-in-out hover:scale-108 hover:!opacity-100 focus-visible:!opacity-100 focus-visible:outline-2 focus-visible:outline-primaryDarker`}
+                  className={`embla__slide__number ${opacity} cursor-pointer rounded-lg duration-300 ease-in-out hover:scale-108 hover:!opacity-100 focus-visible:!opacity-100 focus-visible:outline-2 focus-visible:outline-primaryDarker`}
                   onClick={() => onSelect(frame.id)}
                   onMouseEnter={() => autoplay.current?.stop()}
                   onMouseLeave={() => autoplay.current?.play()}
@@ -79,10 +85,11 @@ const Carousel: React.FC<PropType> = (props) => {
                 >
                   <Image
                     src={frame.preview}
-                    width={400}
-                    height={150}
+                    width={frame.width}
+                    height={frame.height}
+                    sizes="(max-width: 40rem) 60vw, 25vw"
                     alt={`${frame.name} photo strip design`}
-                    className="rounded-lg shadow-lg"
+                    className="block h-auto w-full rounded-lg shadow-lg"
                   />
                 </button>
               </div>
